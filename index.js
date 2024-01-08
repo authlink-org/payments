@@ -1,6 +1,8 @@
 const Express = require("express")
 const App = Express()
 
+console.log("Starting payments server")
+
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
