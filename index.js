@@ -41,9 +41,6 @@ setTimeout(() => {
         return res.send(Key)
       })
     }
-
-    console.log("Invalid api key")
-    return res.status(301)
   })
 
   const PORT = process.env.PORT || 3000
