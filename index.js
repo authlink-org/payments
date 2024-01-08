@@ -28,22 +28,21 @@ setTimeout(() => {
     }) 
   }
 
-  const Reply = CreateKey("aa689c5b-4002-4107-b766-374755509ecc").then((X) => {
-    console.log(X)
-  })
-
   App.post("/sellix/:apikey/webhook", (req, res) => {
-    if(req.headers["x-sellix-event"] === "order:paid:product") {
+    if(req.headers["x-sellix-event"] === "product:dynamic") {
       const ApiKey = req.params.apikey
+      console.log("Handling payment for", ApiKey)
       CreateKey(ApiKey).then((Key) => {
         if(Key === false) {
+          console.log("Unauthorized!")
           return res.status(401)
         }
-
+        console.log("Generated License")
         return res.send(Key)
       })
     }
 
+    console.log("Invalid api key")
     return res.status(301)
   })
 
